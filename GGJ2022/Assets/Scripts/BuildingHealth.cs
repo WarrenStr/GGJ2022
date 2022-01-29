@@ -35,6 +35,7 @@ public class BuildingHealth : MonoBehaviour
     [SerializeField] EnemySpawner spawner;
 
     private int ranNum;
+    [SerializeField] GameObject hitParticle;
 
 
     private void Update()
@@ -42,6 +43,16 @@ public class BuildingHealth : MonoBehaviour
         if (Input.GetKeyDown(KeyCode.Space))
         {
             BuildingHit();
+            
+        }
+    }
+
+    private void OnTriggerEnter(Collider other)
+    {
+        if(other.tag == "Gorilla")
+        {
+            BuildingHit();
+            Instantiate(hitParticle, other.transform.position, Quaternion.identity);
         }
     }
 
@@ -56,6 +67,7 @@ public class BuildingHealth : MonoBehaviour
         {
             UndamagedBuilding.SetActive(false);
             Rubble.SetActive(true);
+            gameObject.GetComponent<Collider>().enabled = false;
             StartCoroutine(RubbleDespawn());
         }
     }
@@ -80,7 +92,7 @@ public class BuildingHealth : MonoBehaviour
             while (enemyNum > 0)
             {
                 ranNum = Random.Range(0, enemyList.Count);
-                spawner.SpawnEnemy(1, enemyList[ranNum]);
+                spawner.SpawnEnemy(1, enemyList[1]);
                 enemyNum--;
             }
         }

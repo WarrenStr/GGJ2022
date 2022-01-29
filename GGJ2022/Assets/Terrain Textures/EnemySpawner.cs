@@ -30,7 +30,6 @@ public class EnemySpawner : MonoBehaviour
             if(spawnPoints.Count > 0)
             {
                 ranNum = Random.Range(0, spawnPoints.Count);
-                print(ranNum);
                 InstantiateEnemy(spawnPoints[ranNum], typeOfEnemy);
                 spawnPoints.RemoveAt(ranNum);
 

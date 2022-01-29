@@ -113,19 +113,34 @@ public class Mover : MonoBehaviour
     
     void Attacking()
     {
-        if (Input.GetKeyDown(KeyCode.E))
+        if (Input.GetKeyDown(KeyCode.E) && !attack)
         {
-            StartCoroutine(AttackTimer());
+            if(transform.position == playerNavAgent.destination)
+            {
+                StopAllCoroutines();
+                StartCoroutine(AttackTimer());
+
+            }
+
+
             playerNavAgent.destination = transform.position;
             animator.SetBool("isAttacking", true);
         }
         else
         {
-            attack = false;
+            //attack = false;
             animator.SetBool("isAttacking", false);
             
         }
 
+    }
+
+    private void OnTriggerEnter(Collider other)
+    {
+        if (other.tag == "Building")
+        {
+            wristCollide.isTrigger = false;
+        }
     }
 
 
@@ -134,8 +149,9 @@ public class Mover : MonoBehaviour
         Debug.Log("Coroutine Started");
         attack = true;
         wristCollide.isTrigger = true;
-        yield return new WaitForSeconds(3.0f);
+        yield return new WaitForSeconds(1.0f);
         attack = false;
         wristCollide.isTrigger = false;
+        Debug.Log("Coroutine Stopped");
     }
 }

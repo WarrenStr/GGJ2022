@@ -7,6 +7,7 @@ TagManager:
   - BuildManager
   - Missile
   - Gorilla
+  - Building
   layers:
   - Default
   - TransparentFX
