@@ -124,7 +124,6 @@ public class Mover : MonoBehaviour
         {
             if(transform.position == playerNavAgent.destination)
             {
-                StopAllCoroutines();
                 StartCoroutine(AttackTimer());
 
             }
@@ -153,13 +152,11 @@ public class Mover : MonoBehaviour
 
     IEnumerator AttackTimer()
     {
-        Debug.Log("Coroutine Started");
         attack = true;
         wristCollide.isTrigger = true;
         yield return new WaitForSeconds(1.0f);
         attack = false;
         wristCollide.isTrigger = false;
-        Debug.Log("Coroutine Stopped");
     }
 
 

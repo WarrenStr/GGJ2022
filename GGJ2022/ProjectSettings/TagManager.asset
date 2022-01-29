@@ -4,11 +4,11 @@
 TagManager:
   serializedVersion: 2
   tags:
-  - BuildManager
   - Missile
   - Gorilla
   - Building
   - Enemy
+  - BuildManager
   layers:
   - Default
   - TransparentFX
@@ -18,8 +18,8 @@ TagManager:
   - UI
   - WhatIsPlayer
   - WhatIsGround
-  - 
-  - 
+  - Player
+  - Animals
   - 
   - 
   - 

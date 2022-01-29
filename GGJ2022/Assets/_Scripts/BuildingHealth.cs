@@ -5,11 +5,10 @@ using UnityEngine;
 
 public class BuildingHealth : MonoBehaviour
 {
-    [Header("Building statistics")]
+    [Header("What happens after the building is destoryed")]
     [SerializeField] int numOfHitsToDestroy;
     [SerializeField] GameObject UndamagedBuilding;
     [SerializeField] GameObject Rubble;
-    [SerializeField] GameObject Trees;
     [SerializeField] List<GameObject> naturePrefabs = new List<GameObject>();
     [SerializeField] List<GameObject> natureSpawns = new List<GameObject>();
 
@@ -38,6 +37,7 @@ public class BuildingHealth : MonoBehaviour
     [SerializeField] EnemySpawner spawner;
 
     private int ranNum;
+    private bool stopNatureSpawn;
     [SerializeField] GameObject hitParticle;
 
 
@@ -68,31 +68,38 @@ public class BuildingHealth : MonoBehaviour
         numOfHitsToDestroy--;
         if(numOfHitsToDestroy < 1) //switches building with rubble when hits is 0
         {
-            UndamagedBuilding.SetActive(false);
-            Rubble.SetActive(true);
-            gameObject.GetComponent<Collider>().enabled = false;
-            StartCoroutine(RubbleDespawn());
+            StartCoroutine(RubbleSpawn());
         }
     }
-
-    public IEnumerator RubbleDespawn() //after set time, the rubble will despawn
+    public IEnumerator RubbleSpawn() //turns off building, and turns on rubble. after set time trees will appear
     {
+        UndamagedBuilding.SetActive(false);
+        Rubble.SetActive(true);
+        gameObject.GetComponent<Collider>().enabled = false;
         yield return new WaitForSeconds(timeTillTreesSpawn);
         StartCoroutine(NatureSpawn());
-        Rubble.SetActive(false);
     }
-
 
     public IEnumerator NatureSpawn() //after set time, trees and nature will apear
     {
+        
         yield return new WaitForSeconds(0.5f);
         ranNum = Random.Range(0, natureSpawns.Count);
 
         Instantiate(naturePrefabs[Random.Range(0, naturePrefabs.Count)], natureSpawns[ranNum].transform.position, Quaternion.identity);
         natureSpawns.RemoveAt(ranNum);
 
-        ranNum = Random.Range(0, 10);
-        if (ranNum != 0 || natureSpawns.Count > 0)
+        ranNum = Random.Range(0, naturePrefabs.Count);
+        print(ranNum);
+        if (ranNum == 0)
+        {
+            stopNatureSpawn = true;
+        }
+        if (natureSpawns.Count < 1)
+        {
+            stopNatureSpawn = true;
+        }
+        if (!stopNatureSpawn)
         {
             StartCoroutine(NatureSpawn());
         }
