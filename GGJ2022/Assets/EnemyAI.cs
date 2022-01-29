@@ -65,7 +65,7 @@ public class EnemyAI : MonoBehaviour
         if (!alreadyAttacked)
         {
             // put attack animation here
-            Rigidbody rb = Instantiate(enemyProjectile, transform.localPosition, Quaternion.identity).GetComponent<Rigidbody>();
+            Rigidbody rb = Instantiate(enemyProjectile, transform.position, Quaternion.identity).GetComponent<Rigidbody>();
             rb.AddForce(transform.forward * 32f, ForceMode.Impulse);
             rb.AddForce(transform.up * 8f, ForceMode.Impulse);
 

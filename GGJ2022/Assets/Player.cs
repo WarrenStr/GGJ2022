@@ -35,10 +35,7 @@ public class Player : MonoBehaviour
         penguinRecharge.PenguinRecharge(rechargeTimer);
         penguinCounter.SetPenguin(currentPenguin);
         
-        if (Input.GetKeyDown(KeyCode.Space))
-        {
-            TakeDamage(20);
-        }
+        
 
         if (Input.GetKeyDown(KeyCode.Z) && (currentPenguin > 0))
         {
@@ -64,5 +61,17 @@ public class Player : MonoBehaviour
         currentHealth -= damage;
 
         healthBar.SetHealth(currentHealth);
+    }
+
+    private void OnCollisionEnter(Collision collision)
+    {
+        foreach(ContactPoint contact in collision.contacts)
+        {
+            if (collision.relativeVelocity.magnitude > 2)
+            {
+                TakeDamage(5);
+            }
+                
+        }
     }
 }
