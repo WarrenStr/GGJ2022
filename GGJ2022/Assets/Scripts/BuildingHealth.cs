@@ -10,6 +10,8 @@ public class BuildingHealth : MonoBehaviour
     [SerializeField] GameObject UndamagedBuilding;
     [SerializeField] GameObject Rubble;
     [SerializeField] GameObject Trees;
+    [SerializeField] List<GameObject> naturePrefabs = new List<GameObject>();
+    [SerializeField] List<GameObject> natureSpawns = new List<GameObject>();
 
     [SerializeField] int timeTillTreesSpawn = 5;
 
@@ -30,6 +32,7 @@ public class BuildingHealth : MonoBehaviour
     [SerializeField] List<GameObject> enemyMelee = new List<GameObject>();
     [SerializeField] List<GameObject> enemyBow = new List<GameObject>();
     [SerializeField] List<GameObject> enemyMusket = new List<GameObject>();
+
 
     [Header("Drag in SpawnEnemies")]
     [SerializeField] EnemySpawner spawner;
@@ -72,11 +75,27 @@ public class BuildingHealth : MonoBehaviour
         }
     }
 
-    public IEnumerator RubbleDespawn() //after set time, the rubble will despawn and trees will apear
+    public IEnumerator RubbleDespawn() //after set time, the rubble will despawn
     {
         yield return new WaitForSeconds(timeTillTreesSpawn);
-        Trees.SetActive(true);
+        StartCoroutine(NatureSpawn());
         Rubble.SetActive(false);
+    }
+
+
+    public IEnumerator NatureSpawn() //after set time, trees and nature will apear
+    {
+        yield return new WaitForSeconds(0.5f);
+        ranNum = Random.Range(0, natureSpawns.Count);
+
+        Instantiate(naturePrefabs[Random.Range(0, naturePrefabs.Count)], natureSpawns[ranNum].transform.position, Quaternion.identity);
+        natureSpawns.RemoveAt(ranNum);
+
+        ranNum = Random.Range(0, 10);
+        if (ranNum != 0 || natureSpawns.Count > 0)
+        {
+            StartCoroutine(NatureSpawn());
+        }
     }
 
     /// <summary>
@@ -91,8 +110,7 @@ public class BuildingHealth : MonoBehaviour
         {
             while (enemyNum > 0)
             {
-                ranNum = Random.Range(0, enemyList.Count);
-                spawner.SpawnEnemy(1, enemyList[1]);
+                spawner.SpawnEnemy(1, enemyList[Random.Range(0, enemyList.Count)]);
                 enemyNum--;
             }
         }
