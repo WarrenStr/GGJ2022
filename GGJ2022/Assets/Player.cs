@@ -8,21 +8,52 @@ public class Player : MonoBehaviour
     public int maxHealth = 100;
     public int currentHealth;
 
+    public int maxPenguin = 3;
+    public int currentPenguin;
+
+    public float maxRechargeTimer = 1.0f;
+    public float rechargeTimer;
+
     public HealthBar healthBar;
+    public PenguinCount penguinCounter;
+    public PenguinCount penguinRecharge;
     
     // Start is called before the first frame update
     void Start()
     {
         currentHealth = maxHealth;
         healthBar.SetMaxHealth(maxHealth);
+
+        currentPenguin = maxPenguin;
+        penguinCounter.SetPenguin(maxPenguin);
     }
 
     // Update is called once per frame
     void Update()
     {
+        penguinRecharge.PenguinRecharge(rechargeTimer);
+        penguinCounter.SetPenguin(currentPenguin);
+        
         if (Input.GetKeyDown(KeyCode.Space))
         {
             TakeDamage(20);
+        }
+
+        if (Input.GetKeyDown(KeyCode.Z) && (currentPenguin > 0))
+        {
+            currentPenguin -= 1;
+            //penguinCounter.SetPenguin(currentPenguin);
+        }
+
+        if (currentPenguin < 3)
+        {
+            rechargeTimer -= Time.deltaTime;
+        }
+
+        if (rechargeTimer <= 0.0f)
+        {
+            currentPenguin += 1;
+            rechargeTimer = maxRechargeTimer;
         }
     }
 
