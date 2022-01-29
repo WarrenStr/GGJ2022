@@ -4,6 +4,7 @@ using UnityEngine;
 
 public class Player : MonoBehaviour
 {
+    private Animator animator;
 
     public int maxHealth = 100;
     public int currentHealth;
@@ -22,6 +23,8 @@ public class Player : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
+        animator = GetComponent<Animator>();
+
         currentHealth = maxHealth;
         healthBar.SetMaxHealth(maxHealth);
 
@@ -74,4 +77,5 @@ public class Player : MonoBehaviour
                 
         }
     }
+
 }
