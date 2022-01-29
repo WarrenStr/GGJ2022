@@ -35,7 +35,7 @@ public class FollowCamera : MonoBehaviour
         }
         if (Input.GetKeyDown(KeyCode.Space))
         {
-            Debug.Log(Input.mousePosition.normalized);
+            //Debug.Log(Input.mousePosition.normalized);
         }
     }
 }

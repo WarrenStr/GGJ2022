@@ -43,6 +43,6 @@ public class Mover : MonoBehaviour
         Vector3 navVelocity = playerNavAgent.velocity;
         Vector3 localNavVelocity = transform.InverseTransformDirection(navVelocity);
         float speed = localNavVelocity.z;
-        animator.SetFloat("Blend", speed);
+        //animator.SetFloat("Blend", speed);
     }
 }
