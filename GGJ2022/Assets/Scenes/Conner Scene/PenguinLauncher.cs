@@ -19,6 +19,7 @@ public class PenguinLauncher : MonoBehaviour
             firePoint.rotation);
 
         projectileInstance.AddForce(firePoint.forward * launchForce);
+        
     }
 
     // Start is called before the first frame update

@@ -22,9 +22,12 @@ public class Mover : MonoBehaviour
     public bool attack;
     public SphereCollider wristCollide;
 
+    bool isPlayerDead;
+
     // Start is called before the first frame update
     void Start()
     {
+        isPlayerDead = false;
         playerNavAgent = GetComponent<NavMeshAgent>();
         animator = GetComponent<Animator>();
         wristCollide.isTrigger = false;
@@ -33,6 +36,8 @@ public class Mover : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        KillPlayer(isPlayerDead);
+
         Attacking();
         if (Input.GetMouseButtonDown(0) || Input.GetMouseButton(0))
         {
@@ -51,6 +56,8 @@ public class Mover : MonoBehaviour
         {
             playerNavAgent.destination = hit.point;
         }
+        
+        
     }
 
     void UpdateAnimator()
@@ -153,5 +160,23 @@ public class Mover : MonoBehaviour
         attack = false;
         wristCollide.isTrigger = false;
         Debug.Log("Coroutine Stopped");
+    }
+
+
+
+    public void KillPlayer(bool playerDead)
+    {
+       int playerHealth =  gameObject.GetComponent<Player>().currentHealth;
+
+        if(playerHealth <= 0)
+        {
+            playerDead = true;
+            playerNavAgent.destination = transform.position;
+            animator.SetBool("isDead", true);
+
+            return;
+        }
+        playerDead = false;
+        return;
     }
 }
