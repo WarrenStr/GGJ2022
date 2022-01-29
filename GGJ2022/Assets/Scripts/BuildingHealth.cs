@@ -1,3 +1,4 @@
+//created by Sam Kreimer 1/28/22
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -9,6 +10,8 @@ public class BuildingHealth : MonoBehaviour
     [SerializeField] GameObject UndamagedBuilding;
     [SerializeField] GameObject Rubble;
     [SerializeField] GameObject Trees;
+
+    [SerializeField] int timeTillTreesSpawn = 5;
 
     [Header("Which enemies to spawn and how many")]
     [SerializeField] bool spawnCoward;
@@ -44,13 +47,12 @@ public class BuildingHealth : MonoBehaviour
 
     public void BuildingHit()
     {
-
         chooseEnemy(enemyCoward, spawnCoward, numberOfCoward);
         chooseEnemy(enemyMelee, spawnMelee, numberOfMelee );
         chooseEnemy(enemyBow, spawnBow, numberOfBow);
         chooseEnemy(enemyMusket, spawnMusket, numberOfMusket);
         numOfHitsToDestroy--;
-        if(numOfHitsToDestroy < 1)
+        if(numOfHitsToDestroy < 1) //switches building with rubble when hits is 0
         {
             UndamagedBuilding.SetActive(false);
             Rubble.SetActive(true);
@@ -58,12 +60,19 @@ public class BuildingHealth : MonoBehaviour
         }
     }
 
-    public IEnumerator RubbleDespawn()
+    public IEnumerator RubbleDespawn() //after set time, the rubble will despawn and trees will apear
     {
-        yield return new WaitForSeconds(2);
+        yield return new WaitForSeconds(timeTillTreesSpawn);
+        Trees.SetActive(true);
+        Rubble.SetActive(false);
     }
 
-
+    /// <summary>
+    /// Takes input and sends that info to the EnemySpawner to instantiate
+    /// </summary>
+    /// <param name="enemyList">List of the enemy you want to spawn</param>
+    /// <param name="enemyBool">true = spawn this type of enemy, false = dont spawn</param>
+    /// <param name="enemyNum">number of enemies that will spawn</param>
     private void chooseEnemy(List<GameObject> enemyList, bool enemyBool, int enemyNum)
     {
         if (enemyBool)
@@ -75,7 +84,5 @@ public class BuildingHealth : MonoBehaviour
                 enemyNum--;
             }
         }
-
-
     }
 }

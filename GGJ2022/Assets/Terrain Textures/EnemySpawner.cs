@@ -1,3 +1,4 @@
+//Created by Sam Kreimer 1/29/2022
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -8,22 +9,22 @@ public class EnemySpawner : MonoBehaviour
     [SerializeField] List<GameObject> startSpawnPoints = new List<GameObject>();
     private int ranNum;
 
-    [SerializeField] GameObject enemyPrefab1, enemyPrefab2, enemyPrefab3, enemyPrefab4, enemyPrefab5, enemyPrefab6;
-
-
     private void Start()
     {
-        print(spawnPoints[1]); 
+        //saves original spawnPoints for future use
         for (int i = 0; i < spawnPoints.Count; i++)
         {
             startSpawnPoints.Add(spawnPoints[i]);
         }
-        print(spawnPoints.Count);
     }
 
+    /// <summary>
+    /// if there is still available spawnpoints, chooses random spawnpoint and passes it to InstantiateEnemy(). removes that spawnpoint for future use
+    /// </summary>
+    /// <param name="numOfEnemy">how many enemies you want to spawn</param>
+    /// <param name="typeOfEnemy">what enemy prefab you want to spawn</param>
     public void SpawnEnemy(int numOfEnemy, GameObject typeOfEnemy)
     {
-        
         while(numOfEnemy > 0 )
         {
             if(spawnPoints.Count > 0)
@@ -35,26 +36,31 @@ public class EnemySpawner : MonoBehaviour
 
 
             }
-
             numOfEnemy--;
         }
-
-
     }
 
+    /// <summary>
+    /// sets SpawnPoints to its original self
+    /// </summary>
     public void ResetList()
     {
-        for (int i = 0; i < spawnPoints.Count; i++)
+        for (int i = 0; i < spawnPoints.Count; i++)//clears spawnpoints list
         {
             spawnPoints.RemoveAt(1);
         }
-        for (int i = 0; i < startSpawnPoints.Count; i++)
+        for (int i = 0; i < startSpawnPoints.Count; i++)//reverts spawnpoints to original
         {
             print(i);
             spawnPoints.Add(startSpawnPoints[i]);
         }
     }
 
+    /// <summary>
+    /// Instantiates the chosen enemy type at the chosen spawnPoint
+    /// </summary>
+    /// <param name="whereToSpawn">empty gameobject with transform</param>
+    /// <param name="whatToSpawn">chosen enemyPrefab</param>
     private void InstantiateEnemy(GameObject whereToSpawn, GameObject whatToSpawn)
     {
         Instantiate(whatToSpawn, whereToSpawn.transform.position, Quaternion.identity);
@@ -62,18 +68,18 @@ public class EnemySpawner : MonoBehaviour
 
     private void Update()
     {
-        if (Input.GetKeyDown(KeyCode.Space))
-        {
-            SpawnEnemy(1, enemyPrefab1);
-            SpawnEnemy(1, enemyPrefab2);
-            SpawnEnemy(1, enemyPrefab3);
-            SpawnEnemy(1, enemyPrefab4);
-            SpawnEnemy(1, enemyPrefab5);
-            SpawnEnemy(1, enemyPrefab6);
-        }
-        if (Input.GetKeyDown(KeyCode.R))
-        {
-            ResetList();
-        }
+        //if (Input.GetKeyDown(KeyCode.Space))
+        //{
+        //    SpawnEnemy(1, enemyPrefab1);
+        //    SpawnEnemy(1, enemyPrefab2);
+        //    SpawnEnemy(1, enemyPrefab3);
+        //    SpawnEnemy(1, enemyPrefab4);
+        //    SpawnEnemy(1, enemyPrefab5);
+        //    SpawnEnemy(1, enemyPrefab6);
+        //}
+        //if (Input.GetKeyDown(KeyCode.R))
+        //{
+        //    ResetList();
+        //}
     }
 }
