@@ -6,7 +6,9 @@ public class BuildingHealth : MonoBehaviour
 {
     [Header("Building statistics")]
     [SerializeField] int numOfHitsToDestroy;
-
+    [SerializeField] GameObject UndamagedBuilding;
+    [SerializeField] GameObject Rubble;
+    [SerializeField] GameObject Trees;
 
     [Header("Which enemies to spawn and how many")]
     [SerializeField] bool spawnCoward;
@@ -50,8 +52,15 @@ public class BuildingHealth : MonoBehaviour
         numOfHitsToDestroy--;
         if(numOfHitsToDestroy < 1)
         {
-
+            UndamagedBuilding.SetActive(false);
+            Rubble.SetActive(true);
+            StartCoroutine(RubbleDespawn());
         }
+    }
+
+    public IEnumerator RubbleDespawn()
+    {
+        yield return new WaitForSeconds(2);
     }
 
 

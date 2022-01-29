@@ -56,9 +56,8 @@ public class Mover : MonoBehaviour
         Vector3 navVelocity = playerNavAgent.velocity;
         Vector3 localNavVelocity = transform.InverseTransformDirection(navVelocity);
         float speed = localNavVelocity.z;
-        //animator.SetFloat("Blend", speed);
-<<<<<<< Updated upstream
-=======
+        animator.SetFloat("Blend", speed);
+
         if (speed > 0.1f && !isRunning)
         {
             animator.SetBool("isWalking", true);
@@ -124,6 +123,6 @@ public class Mover : MonoBehaviour
             animator.SetBool("isAttacking", false);
             
         }
->>>>>>> Stashed changes
+
     }
 }
