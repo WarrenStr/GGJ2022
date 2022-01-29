@@ -20,12 +20,14 @@ public class Mover : MonoBehaviour
     private bool isRunning = false;
 
     public bool attack;
+    public SphereCollider wristCollide;
 
     // Start is called before the first frame update
     void Start()
     {
         playerNavAgent = GetComponent<NavMeshAgent>();
         animator = GetComponent<Animator>();
+        wristCollide.isTrigger = false;
     }
 
     // Update is called once per frame
@@ -56,7 +58,7 @@ public class Mover : MonoBehaviour
         Vector3 navVelocity = playerNavAgent.velocity;
         Vector3 localNavVelocity = transform.InverseTransformDirection(navVelocity);
         float speed = localNavVelocity.z;
-        animator.SetFloat("Blend", speed);
+        //animator.SetFloat("Blend", speed);
 
         if (speed > 0.1f && !isRunning)
         {
@@ -113,7 +115,7 @@ public class Mover : MonoBehaviour
     {
         if (Input.GetKeyDown(KeyCode.E))
         {
-            attack = true;
+            StartCoroutine(AttackTimer());
             playerNavAgent.destination = transform.position;
             animator.SetBool("isAttacking", true);
         }
@@ -124,5 +126,16 @@ public class Mover : MonoBehaviour
             
         }
 
+    }
+
+
+    IEnumerator AttackTimer()
+    {
+        Debug.Log("Coroutine Started");
+        attack = true;
+        wristCollide.isTrigger = true;
+        yield return new WaitForSeconds(3.0f);
+        attack = false;
+        wristCollide.isTrigger = false;
     }
 }
