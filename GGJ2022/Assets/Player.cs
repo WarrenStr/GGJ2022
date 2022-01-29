@@ -17,6 +17,7 @@ public class Player : MonoBehaviour
     public HealthBar healthBar;
     public PenguinCount penguinCounter;
     public PenguinCount penguinRecharge;
+    public PenguinLauncher penguinLauncher;
     
     // Start is called before the first frame update
     void Start()
@@ -42,6 +43,7 @@ public class Player : MonoBehaviour
         if (Input.GetKeyDown(KeyCode.Z) && (currentPenguin > 0))
         {
             currentPenguin -= 1;
+            penguinLauncher.LaunchProjectile();
             //penguinCounter.SetPenguin(currentPenguin);
         }
 
