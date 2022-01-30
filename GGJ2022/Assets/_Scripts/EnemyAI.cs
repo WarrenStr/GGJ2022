@@ -11,8 +11,8 @@ public class EnemyAI : MonoBehaviour
     public LayerMask whatIsGround, whatIsPlayer;
 
     public float health;
-    public float speed;
-
+    private float speed = 1;
+    public float speedMultipler = 2;
 
     //scared var
     public float randomRange;
@@ -76,7 +76,7 @@ public class EnemyAI : MonoBehaviour
         waitingToChase = false;
         enemyAnim.SetBool("isShooting", false);
         enemyAnim.SetBool("isChasing", true);
-        agent.speed = speed;
+        agent.speed = speed * (speedMultipler/2);
         agent.SetDestination(player.position);
     }
 
@@ -93,7 +93,7 @@ public class EnemyAI : MonoBehaviour
             randomSpot = Random.insideUnitCircle * randomRange;
         }
 
-        agent.speed = speed * 2;
+        agent.speed = speed * speedMultipler;
         agent.SetDestination(randomSpot);
     }
     private IEnumerator ScaredForTime()
@@ -142,7 +142,9 @@ public class EnemyAI : MonoBehaviour
 
         if (health <= 0)
         {
-            Invoke(nameof(DestroyEnemy), .5f);
+            enemyAnim.enabled = false;
+            gameObject.GetComponent<EnemyAI>().enabled = false;
+            //Invoke(nameof(DestroyEnemy), .5f);
         }
     }
 

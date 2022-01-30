@@ -39,6 +39,23 @@ public class EnemySpawner : MonoBehaviour
         }
     }
 
+    private IEnumerator SpawnEnemyTimed(GameObject typeOfEnemy)
+    {
+        yield return new WaitForSeconds(Random.Range(8f, 16f));
+        if(spawnPoints.Count > 0)
+        {
+            ranNum = Random.Range(0, spawnPoints.Count);
+            InstantiateEnemy(spawnPoints[ranNum], typeOfEnemy);
+            spawnPoints.RemoveAt(ranNum);
+        }
+        else
+        {
+            ResetList();
+        }
+
+        StartCoroutine(SpawnEnemyTimed(typeOfEnemy));
+    }
+
     /// <summary>
     /// sets SpawnPoints to its original self
     /// </summary>

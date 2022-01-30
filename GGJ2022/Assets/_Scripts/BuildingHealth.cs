@@ -58,10 +58,12 @@ public class BuildingHealth : MonoBehaviour
 
     public void BuildingHit()
     {
+        spawner.ResetList();
         chooseEnemy(enemyCoward, spawnCoward, numberOfCoward);
         chooseEnemy(enemyMelee, spawnMelee, numberOfMelee );
         chooseEnemy(enemyBow, spawnBow, numberOfBow);
         chooseEnemy(enemyMusket, spawnMusket, numberOfMusket);
+
         numOfHitsToDestroy--;
         if(numOfHitsToDestroy < 1) //switches building with rubble when hits is 0
         {
