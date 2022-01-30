@@ -1538,6 +1538,10 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 1145582620}
     - target: {fileID: 226917656, guid: 166de651131410845bbf9789550f6ea0, type: 3}
+      propertyPath: subtractBanana
+      value: 
+      objectReference: {fileID: 2047625854}
+    - target: {fileID: 226917656, guid: 166de651131410845bbf9789550f6ea0, type: 3}
       propertyPath: penguinRecharge
       value: 
       objectReference: {fileID: 1145582620}
@@ -5230,7 +5234,7 @@ MonoBehaviour:
     serializedVersion: 2
     m_Bits: 64
   health: 6
-  speed: 0
+  speedMultipler: 2
   randomRange: 0
   lengthOfBeingScared: 0
   isScared: 0
