@@ -39,7 +39,7 @@ public class Mover : MonoBehaviour
         KillPlayer(isPlayerDead);
 
         Attacking();
-        if (Input.GetMouseButtonDown(0) || Input.GetMouseButton(0))
+        if (Input.GetMouseButtonDown(0) || Input.GetMouseButton(0) && !attack)
         {
             MoveToCursor();
         }
@@ -122,13 +122,13 @@ public class Mover : MonoBehaviour
     {
         if (Input.GetKeyDown(KeyCode.E) && !attack)
         {
-            if(transform.position == playerNavAgent.destination)
-            {
-                StartCoroutine(AttackTimer());
-
-            }
+            //if(transform.position == playerNavAgent.destination)
 
 
+
+            animator.SetTrigger("isSwinging");
+
+            StartCoroutine(AttackTimer());
             playerNavAgent.destination = transform.position;
             animator.SetBool("isAttacking", true);
         }
@@ -156,6 +156,7 @@ public class Mover : MonoBehaviour
         wristCollide.isTrigger = true;
         yield return new WaitForSeconds(1.0f);
         attack = false;
+        animator.ResetTrigger("isSwinging");
         wristCollide.isTrigger = false;
     }
 
