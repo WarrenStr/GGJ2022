@@ -1545,6 +1545,10 @@ PrefabInstance:
       propertyPath: gorillaAnim
       value: 
       objectReference: {fileID: 574818157}
+    - target: {fileID: 1967878721, guid: 166de651131410845bbf9789550f6ea0, type: 3}
+      propertyPath: m_RootOrder
+      value: 2
+      objectReference: {fileID: 0}
     - target: {fileID: 1718621956165586, guid: 166de651131410845bbf9789550f6ea0, type: 3}
       propertyPath: m_TagString
       value: Gorilla
@@ -6840,6 +6844,7 @@ GameObject:
   m_Component:
   - component: {fileID: 2047625853}
   - component: {fileID: 2047625852}
+  - component: {fileID: 2047625854}
   m_Layer: 0
   m_Name: Game Manager
   m_TagString: Untagged
@@ -6877,6 +6882,22 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 10
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &2047625854
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2047625851}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2b8c99387b5c8cd43b1c14add7650cba, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  banana: {fileID: 2641206044444786498, guid: 2aa25ddbead0dbd4385c41a974f9d945, type: 3}
+  xPos: 0
+  zPos: 0
+  bananaCount: 0
 --- !u!1 &2053587546
 GameObject:
   m_ObjectHideFlags: 0

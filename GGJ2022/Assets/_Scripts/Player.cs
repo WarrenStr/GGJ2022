@@ -19,6 +19,7 @@ public class Player : MonoBehaviour
     public PenguinCount penguinCounter;
     public PenguinCount penguinRecharge;
     public PenguinLauncher penguinLauncher;
+    public BananaSpawner subtractBanana;
     
     // Start is called before the first frame update
     void Start()
@@ -66,11 +67,24 @@ public class Player : MonoBehaviour
         healthBar.SetHealth(currentHealth);
     }
 
+    void RestoreHealth(int heal)
+    {
+        currentHealth += heal;
+
+        healthBar.SetHealth(currentHealth);
+    }
+
     private void OnCollisionEnter(Collision collision)
     {
         if (collision.gameObject.tag == "Missile")
         {
             TakeDamage(5);
+        }
+
+        if (collision.gameObject.tag == "Nanner")
+        {
+            RestoreHealth(10);
+            subtractBanana.SubtractBanana(1);
         }
         
     }
