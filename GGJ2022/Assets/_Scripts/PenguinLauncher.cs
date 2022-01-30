@@ -15,7 +15,8 @@ public class PenguinLauncher : MonoBehaviour
     
     public void LaunchProjectile()
     {
-        Invoke("HitChest", 1.0f);
+        Invoke("HitChest", 0.4f);
+
 
         //gorillaAnim.SetBool("isChestHit", true);
 

@@ -9,6 +9,9 @@ public class Mover : MonoBehaviour
     NavMeshAgent playerNavAgent;
     private Animator animator;
 
+    [SerializeField] GameObject mainMusic;
+    [SerializeField] GameObject deathMusic;
+
     [SerializeField]
     private float runSpeed = 10.0f;
     [SerializeField]
@@ -153,6 +156,7 @@ public class Mover : MonoBehaviour
     IEnumerator AttackTimer()
     {
         attack = true;
+        yield return new WaitForSeconds(0.4f);
         wristCollide.isTrigger = true;
         yield return new WaitForSeconds(1.0f);
         attack = false;
@@ -171,6 +175,8 @@ public class Mover : MonoBehaviour
             playerDead = true;
             playerNavAgent.destination = transform.position;
             animator.SetBool("isDead", true);
+            mainMusic.SetActive(false);
+            deathMusic.SetActive(true);
 
             return;
         }

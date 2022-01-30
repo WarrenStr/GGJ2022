@@ -78,7 +78,8 @@ public class Player : MonoBehaviour
     {
         if (collision.gameObject.tag == "Missile")
         {
-            TakeDamage(5);
+            print("HIT");
+            TakeDamage(1);
         }
 
         if (collision.gameObject.tag == "Nanner")

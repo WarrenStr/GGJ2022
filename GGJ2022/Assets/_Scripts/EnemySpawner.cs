@@ -68,7 +68,6 @@ public class EnemySpawner : MonoBehaviour
         }
         for (int i = 0; i < startSpawnPoints.Count; i++)//reverts spawnpoints to original
         {
-            print(i);
             spawnPoints.Add(startSpawnPoints[i]);
         }
     }
