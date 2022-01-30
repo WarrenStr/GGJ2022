@@ -39,7 +39,8 @@ public class BuildingHealth : MonoBehaviour
     private int ranNum;
     private bool stopNatureSpawn;
     private GameManager GM;
-    [SerializeField] GameObject hitParticle;
+    [SerializeField] GameObject hitParticle; 
+    [SerializeField] Animator houseAnim;
 
 
     private void Start()
@@ -58,6 +59,8 @@ public class BuildingHealth : MonoBehaviour
 
     public void BuildingHit()
     {
+        StartCoroutine(DamageBuilding());
+
         spawner.ResetList();
         chooseEnemy(enemyCoward, spawnCoward, numberOfCoward);
         chooseEnemy(enemyMelee, spawnMelee, numberOfMelee );
@@ -70,6 +73,13 @@ public class BuildingHealth : MonoBehaviour
             StartCoroutine(RubbleSpawn());
             GM.DestroyedABuilding();
         }
+    }
+
+    public IEnumerator DamageBuilding()
+    {
+        houseAnim.SetBool("damaged", true);
+        yield return new WaitForSeconds(0.1f);
+        houseAnim.SetBool("damaged", false);
     }
     public IEnumerator RubbleSpawn() //turns off building, and turns on rubble. after set time trees will appear
     {

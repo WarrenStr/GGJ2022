@@ -968,6 +968,7 @@ MonoBehaviour:
   enemyMusket: []
   spawner: {fileID: 6244929634545298180}
   hitParticle: {fileID: 102696, guid: 185035e4680c4b344b62bf5ace4674b8, type: 3}
+  houseAnim: {fileID: 1519863718}
 --- !u!65 &6244929634687560198
 BoxCollider:
   m_ObjectHideFlags: 0
