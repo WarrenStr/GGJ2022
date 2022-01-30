@@ -1615,6 +1615,10 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 472389130}
     - target: {fileID: 226917656, guid: 166de651131410845bbf9789550f6ea0, type: 3}
+      propertyPath: subtractBanana
+      value: 
+      objectReference: {fileID: 1615810954}
+    - target: {fileID: 226917656, guid: 166de651131410845bbf9789550f6ea0, type: 3}
       propertyPath: penguinRecharge
       value: 
       objectReference: {fileID: 472389130}
@@ -13584,6 +13588,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1615810953}
   - component: {fileID: 1615810952}
+  - component: {fileID: 1615810954}
   m_Layer: 0
   m_Name: GameManager
   m_TagString: GameManager
@@ -13621,6 +13626,22 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 11
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1615810954
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1615810951}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2b8c99387b5c8cd43b1c14add7650cba, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  banana: {fileID: 2641206044444786498, guid: 2aa25ddbead0dbd4385c41a974f9d945, type: 3}
+  xPos: 0
+  zPos: 0
+  bananaCount: 0
 --- !u!1 &1622742376 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 2766963123592591151, guid: e351856615f0b8d40a85c1534acf2d8a, type: 3}

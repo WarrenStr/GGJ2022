@@ -12,7 +12,7 @@ public class Player : MonoBehaviour
     public int maxPenguin = 3;
     public int currentPenguin;
 
-    public float maxRechargeTimer = 1.0f;
+    public float maxRechargeTimer = 3.0f;
     public float rechargeTimer;
 
     public HealthBar healthBar;
