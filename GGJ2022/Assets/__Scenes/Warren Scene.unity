@@ -2126,47 +2126,6 @@ MonoBehaviour:
   runMeterRegenTime: 7
   attack: 0
   wristCollide: {fileID: 189699930}
-<<<<<<< Updated upstream
-=======
---- !u!114 &574818146
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 574818143}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 02aa9b5fbd96d784698f0e1607119eab, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  firePoint: {fileID: 2053587547}
-  projectilePrefab: {fileID: 3489120892114460638, guid: 6817fd3c5809228498530e5ebe58f46a, type: 3}
-  launchForce: 100
-  gorillaAnim: {fileID: 0}
---- !u!114 &574818147
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 574818143}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 2269a465da5664e4a8e598af2713e0f1, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  maxHealth: 100
-  currentHealth: 0
-  maxPenguin: 3
-  currentPenguin: 0
-  maxRechargeTimer: 1
-  rechargeTimer: 0
-  healthBar: {fileID: 399975957}
-  penguinCounter: {fileID: 1145582620}
-  penguinRecharge: {fileID: 1145582620}
-  penguinLauncher: {fileID: 574818146}
->>>>>>> Stashed changes
 --- !u!54 &574818153
 Rigidbody:
   m_ObjectHideFlags: 0
