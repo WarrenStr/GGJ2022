@@ -38,12 +38,13 @@ public class BuildingHealth : MonoBehaviour
 
     private int ranNum;
     private bool stopNatureSpawn;
+    private GameManager GM;
     [SerializeField] GameObject hitParticle;
 
 
-    private void Update()
+    private void Start()
     {
-
+        GM = GameObject.FindGameObjectWithTag("GameManager").GetComponent<GameManager>();
     }
 
     private void OnTriggerEnter(Collider other)
@@ -65,6 +66,7 @@ public class BuildingHealth : MonoBehaviour
         if(numOfHitsToDestroy < 1) //switches building with rubble when hits is 0
         {
             StartCoroutine(RubbleSpawn());
+            GM.DestroyedABuilding();
         }
     }
     public IEnumerator RubbleSpawn() //turns off building, and turns on rubble. after set time trees will appear
