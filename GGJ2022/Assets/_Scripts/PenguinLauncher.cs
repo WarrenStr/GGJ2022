@@ -9,16 +9,17 @@ public class PenguinLauncher : MonoBehaviour
     public Rigidbody projectilePrefab;
 
     public float launchForce = 10f;
+
+    public Animator gorillaAnim;
     
     
     public void LaunchProjectile()
     {
-        var projectileInstance = Instantiate(
-            projectilePrefab,
-            firePoint.position,
-            firePoint.rotation);
+        Invoke("HitChest", 1.0f);
 
-        projectileInstance.AddForce(firePoint.forward * launchForce);
+        gorillaAnim.SetBool("isChestHit", true);
+
+        Invoke("CancelChestHit", 3.0f);
         
     }
 
@@ -32,5 +33,20 @@ public class PenguinLauncher : MonoBehaviour
     void Update()
     {
         
+    }
+
+    void HitChest()
+    {
+        var projectileInstance = Instantiate(
+            projectilePrefab,
+            firePoint.position,
+            firePoint.rotation);
+
+        projectileInstance.AddForce(firePoint.forward * launchForce);
+    }
+    
+    void CancelChestHit()
+    {
+        gorillaAnim.SetBool("isChestHit", false);
     }
 }
