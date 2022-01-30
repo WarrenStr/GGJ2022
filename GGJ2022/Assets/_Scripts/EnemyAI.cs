@@ -5,6 +5,7 @@ using UnityEngine.AI;
 
 public class EnemyAI : MonoBehaviour
 {
+    private Animator enemyAnim;
     public NavMeshAgent agent;
     public Transform player;
     public LayerMask whatIsGround, whatIsPlayer;
@@ -20,9 +21,12 @@ public class EnemyAI : MonoBehaviour
     public bool isScared;
     private bool startScared;
 
+    private bool waitingToChase;
+
     public float timeBetweenAttacks;
     bool alreadyAttacked;
     public GameObject enemyProjectile;
+    public Transform shootPos;
 
 
 
@@ -34,11 +38,12 @@ public class EnemyAI : MonoBehaviour
     {
         player = GameObject.FindGameObjectWithTag("Player").transform;
         agent = GetComponent<NavMeshAgent>();
+        enemyAnim = GetComponent<Animator>();
     }
 
     void Start()
     {
-        
+        waitingToChase = false;
     }
 
     // Update is called once per frame
@@ -51,11 +56,11 @@ public class EnemyAI : MonoBehaviour
         playerInSightRange = Physics.CheckSphere(transform.position, sightRange, whatIsPlayer);
         playerInAttackRange = Physics.CheckSphere(transform.position, attackRange, whatIsPlayer);
 
-        if(playerInSightRange && !playerInAttackRange && !isScared)
+        if(playerInSightRange && !playerInAttackRange && !isScared && !waitingToChase)
         {
             ChasePlayer();
         }
-        if (playerInSightRange && playerInAttackRange && !isScared)
+        if (playerInSightRange && playerInAttackRange && !isScared )
         {
             AttackPlayer();
         }
@@ -68,6 +73,9 @@ public class EnemyAI : MonoBehaviour
 
     private void ChasePlayer()
     {
+        waitingToChase = false;
+        enemyAnim.SetBool("isShooting", false);
+        enemyAnim.SetBool("isChasing", true);
         agent.speed = speed;
         agent.SetDestination(player.position);
     }
@@ -98,22 +106,33 @@ public class EnemyAI : MonoBehaviour
     {
         agent.SetDestination(transform.position);
         transform.LookAt(player);
+        waitingToChase = true;
 
         if (!alreadyAttacked)
         {
             // put attack animation here
-            Rigidbody rb = Instantiate(enemyProjectile, transform.position, Quaternion.identity).GetComponent<Rigidbody>();
+            enemyAnim.SetBool("isShooting", true);
+            Rigidbody rb = Instantiate(enemyProjectile, shootPos.position, Quaternion.identity).GetComponent<Rigidbody>();
             rb.AddForce(transform.forward * 32f, ForceMode.Impulse);
             rb.AddForce(transform.up * 8f, ForceMode.Impulse);
-
+            StartCoroutine(WaitToChase());
             alreadyAttacked = true;
             Invoke(nameof(ResetAttack), timeBetweenAttacks);
             Destroy(rb.gameObject, 3);
         }
     }
 
+    IEnumerator WaitToChase()
+    {
+        waitingToChase = true;
+
+        yield return new WaitForSeconds(4);
+        ChasePlayer();
+    }
+
     private void ResetAttack()
     {
+        
         alreadyAttacked = false;
     }
 

@@ -68,14 +68,11 @@ public class Player : MonoBehaviour
 
     private void OnCollisionEnter(Collision collision)
     {
-        foreach(ContactPoint contact in collision.contacts)
+        if (collision.gameObject.tag == "Missile")
         {
-            if (collision.relativeVelocity.magnitude > 2)
-            {
-                TakeDamage(5);
-            }
-                
+            TakeDamage(5);
         }
+        
     }
 
 }
