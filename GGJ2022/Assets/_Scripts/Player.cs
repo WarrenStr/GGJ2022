@@ -66,6 +66,13 @@ public class Player : MonoBehaviour
         healthBar.SetHealth(currentHealth);
     }
 
+    public void RestoreHealth(int heal)
+    {
+        currentHealth += heal;
+
+        healthBar.SetHealth(currentHealth);
+    }
+
     private void OnCollisionEnter(Collision collision)
     {
         if (collision.gameObject.tag == "Missile")
