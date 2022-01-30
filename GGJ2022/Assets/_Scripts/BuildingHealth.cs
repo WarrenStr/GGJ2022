@@ -43,11 +43,7 @@ public class BuildingHealth : MonoBehaviour
 
     private void Update()
     {
-        if (Input.GetKeyDown(KeyCode.Space))
-        {
-            BuildingHit();
-            
-        }
+
     }
 
     private void OnTriggerEnter(Collider other)

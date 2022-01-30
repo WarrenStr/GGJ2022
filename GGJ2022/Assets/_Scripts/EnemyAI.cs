@@ -10,10 +10,21 @@ public class EnemyAI : MonoBehaviour
     public LayerMask whatIsGround, whatIsPlayer;
 
     public float health;
+    public float speed;
+
+
+    //scared var
+    public float randomRange;
+    public float lengthOfBeingScared;
+    Vector3 randomSpot;
+    public bool isScared;
+    private bool startScared;
 
     public float timeBetweenAttacks;
     bool alreadyAttacked;
     public GameObject enemyProjectile;
+
+
 
     public float sightRange, attackRange;
     public bool playerInSightRange, playerInAttackRange;
@@ -33,28 +44,54 @@ public class EnemyAI : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        if (Input.GetKeyDown(KeyCode.Space))
+        {
+            isScared = true;
+        }
         playerInSightRange = Physics.CheckSphere(transform.position, sightRange, whatIsPlayer);
         playerInAttackRange = Physics.CheckSphere(transform.position, attackRange, whatIsPlayer);
 
-        if(playerInSightRange && !playerInAttackRange)
+        if(playerInSightRange && !playerInAttackRange && !isScared)
         {
             ChasePlayer();
         }
+        if (playerInSightRange && playerInAttackRange && !isScared)
         {
-            if (playerInSightRange && !playerInAttackRange)
-            {
-                ChasePlayer();
-            }
-            if (playerInSightRange && playerInAttackRange)
-            {
-                AttackPlayer();
-            }
+            AttackPlayer();
+        }
+        if (isScared)
+        {
+            Scared();
+            print("scared");
         }
     }
 
     private void ChasePlayer()
     {
+        agent.speed = speed;
         agent.SetDestination(player.position);
+    }
+
+    private void Scared()
+    {
+        if (!startScared)
+        {
+            startScared = true;
+            randomSpot = Random.insideUnitCircle * randomRange;
+            StartCoroutine(ScaredForTime());
+        }
+        if(agent.destination == randomSpot)
+        {
+            randomSpot = Random.insideUnitCircle * randomRange;
+        }
+
+        agent.speed = speed * 2;
+        agent.SetDestination(randomSpot);
+    }
+    private IEnumerator ScaredForTime()
+    {
+        yield return new WaitForSeconds(lengthOfBeingScared);
+        isScared = false;
     }
 
     private void AttackPlayer()

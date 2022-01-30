@@ -1050,7 +1050,7 @@ NavMeshAgent:
   m_AutoBraking: 1
   m_AutoRepath: 1
   m_Height: 2
-  m_BaseOffset: 1
+  m_BaseOffset: 0
   m_WalkableMask: 4294967295
   m_ObstacleAvoidanceType: 4
 --- !u!114 &727294729814750052
@@ -1072,9 +1072,10 @@ MonoBehaviour:
     m_Bits: 128
   whatIsPlayer:
     serializedVersion: 2
-    m_Bits: 64
-  health: 3
-  timeBetweenAttacks: 3
+    m_Bits: 320
+  health: 1
+  speed: 5
+  timeBetweenAttacks: 4
   enemyProjectile: {fileID: 1263437943489172, guid: 9e26aec6688c4604db5b8271d50b40ae, type: 3}
   sightRange: 30
   attackRange: 8.98
