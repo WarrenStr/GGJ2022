@@ -12,6 +12,8 @@ public class EnemyAIStayScared : MonoBehaviour
     private float speed = 1;
     public float speedMultipler = 2;
 
+    public GameObject emptty;
+
     //scared var
     public float randomRange;
     public float newPosTimer;
@@ -36,12 +38,16 @@ public class EnemyAIStayScared : MonoBehaviour
         if (!startScared)
         {
             startScared = true;
-            randomSpot = Random.insideUnitCircle * randomRange;
+            randomSpot = Random.insideUnitSphere * randomRange;
+            randomSpot.y = 0;
+            emptty.transform.position = randomSpot;
             StartCoroutine(NewPosScared());
         }
-        if (agent.destination == randomSpot)
+        if (agent.transform.position.x == randomSpot.x && agent.transform.position.z == randomSpot.z)
         {
-            randomSpot = Random.insideUnitCircle * randomRange;
+            print("Hi");
+            randomSpot = Random.insideUnitSphere * randomRange;
+            randomSpot.y = 0;
         }
 
         agent.speed = speed * speedMultipler;
@@ -50,7 +56,12 @@ public class EnemyAIStayScared : MonoBehaviour
     private IEnumerator NewPosScared()
     {
         yield return new WaitForSeconds(newPosTimer);
+
         randomSpot = Random.insideUnitCircle * randomRange;
+        randomSpot.y = 0;
+        print(randomSpot);
+        emptty.transform.position = randomSpot;
+        StartCoroutine(NewPosScared());
     }
     public void TakeDamage(int damage)
     {

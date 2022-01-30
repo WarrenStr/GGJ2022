@@ -144,6 +144,9 @@ public class EnemyAI : MonoBehaviour
         {
             enemyAnim.enabled = false;
             gameObject.GetComponent<EnemyAI>().enabled = false;
+            gameObject.GetComponent<Collider>().enabled = false;
+            gameObject.GetComponent<NavMeshAgent>().enabled = false;
+
             //Invoke(nameof(DestroyEnemy), .5f);
         }
     }
