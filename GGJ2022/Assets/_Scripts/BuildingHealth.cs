@@ -38,6 +38,7 @@ public class BuildingHealth : MonoBehaviour
 
     private int ranNum;
     private bool stopNatureSpawn;
+    private bool hitByPenguin;
     private GameManager GM;
     [SerializeField] GameObject hitParticle; 
     [SerializeField] Animator houseAnim;
@@ -46,6 +47,7 @@ public class BuildingHealth : MonoBehaviour
     private void Start()
     {
         GM = GameObject.FindGameObjectWithTag("GameManager").GetComponent<GameManager>();
+        spawner.SpawnEnemyTimed(enemyMusket[Random.Range(0, enemyMusket.Count)]);
     }
 
     private void OnTriggerEnter(Collider other)
@@ -54,6 +56,15 @@ public class BuildingHealth : MonoBehaviour
         {
             BuildingHit();
             Instantiate(hitParticle, other.transform.position, Quaternion.identity);
+        }
+        if (other.tag == "Penguin")
+        {
+            if (!hitByPenguin)
+            {
+                hitByPenguin = true;
+                BuildingHit();
+                Instantiate(hitParticle, other.transform.position, Quaternion.identity);
+            }
         }
     }
 

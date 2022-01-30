@@ -171,6 +171,15 @@ public class EnemyAI : MonoBehaviour
             Debug.Log("Player Hit");
             TakeDamage(3);
         }
+        if(other.tag == "Missile")
+        {
+            TakeDamage(1);
+        }
+        if (other.tag == "Penguin")
+        {
+            TakeDamage(2);
+        }
+
     }
 
     private void OnDrawGizmosSelected()

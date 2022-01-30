@@ -16,6 +16,7 @@ public class EnemySpawner : MonoBehaviour
         {
             startSpawnPoints.Add(spawnPoints[i]);
         }
+        
     }
 
     /// <summary>
@@ -39,7 +40,7 @@ public class EnemySpawner : MonoBehaviour
         }
     }
 
-    private IEnumerator SpawnEnemyTimed(GameObject typeOfEnemy)
+    public IEnumerator SpawnEnemyTimed(GameObject typeOfEnemy)
     {
         yield return new WaitForSeconds(Random.Range(8f, 16f));
         if(spawnPoints.Count > 0)

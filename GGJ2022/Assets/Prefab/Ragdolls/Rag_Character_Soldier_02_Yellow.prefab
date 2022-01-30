@@ -2895,7 +2895,7 @@ MonoBehaviour:
   whatIsPlayer:
     serializedVersion: 2
     m_Bits: 320
-  health: 1
+  health: 3
   speedMultipler: 4
   randomRange: 0
   lengthOfBeingScared: 0
