@@ -381,9 +381,12 @@ MonoBehaviour:
   spawnMusket: 0
   numberOfMusket: 0
   enemyCoward:
-  - {fileID: 171706, guid: 0925457c2b2fe9f4a8747c59013d56d4, type: 3}
-  - {fileID: 179034, guid: a680ac69aa15dce4ca3d34bc515f671d, type: 3}
-  - {fileID: 116112, guid: 100dded3f80a43846a29e6fdf0e82019, type: 3}
+  - {fileID: 6013179321686681941, guid: 757e53eb5d8551644930f3e0a7fa89f9, type: 3}
+  - {fileID: 6013179321686681941, guid: 23d01e531cec071498c2468dd17c075f, type: 3}
+  - {fileID: 6013179321686681941, guid: 67a91e26db630104eb7a73da20e54c62, type: 3}
+  - {fileID: 6013179321686681941, guid: c18160f3afa7613409ed0a29dababe7b, type: 3}
+  - {fileID: 6013179321686681941, guid: f120cc4b11a8c614db84aaa66d564bac, type: 3}
+  - {fileID: 6013179321686681941, guid: 3eff482a817682c408fdf3ea50a0cb83, type: 3}
   enemyMelee: []
   enemyBow: []
   enemyMusket: []
