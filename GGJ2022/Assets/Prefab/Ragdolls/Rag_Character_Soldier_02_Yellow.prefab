@@ -16,7 +16,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!4 &4721759108168730199
 Transform:
   m_ObjectHideFlags: 0
@@ -2722,7 +2722,7 @@ GameObject:
   - component: {fileID: 174900698}
   - component: {fileID: 174900699}
   m_Layer: 0
-  m_Name: Rag_Character_Soldier_02_Black
+  m_Name: Rag_Character_Soldier_02_Yellow
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -2896,7 +2896,7 @@ MonoBehaviour:
     serializedVersion: 2
     m_Bits: 320
   health: 1
-  speedMultipler: 2
+  speedMultipler: 4
   randomRange: 0
   lengthOfBeingScared: 0
   isScared: 0
@@ -3668,7 +3668,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &7344666427671080130
 Transform:
   m_ObjectHideFlags: 0

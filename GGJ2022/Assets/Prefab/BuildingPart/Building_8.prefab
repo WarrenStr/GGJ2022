@@ -429,8 +429,8 @@ MonoBehaviour:
   numberOfMelee: 0
   spawnBow: 0
   numberOfBow: 0
-  spawnMusket: 0
-  numberOfMusket: 0
+  spawnMusket: 1
+  numberOfMusket: 2
   enemyCoward:
   - {fileID: 6013179321686681941, guid: 3eff482a817682c408fdf3ea50a0cb83, type: 3}
   - {fileID: 6013179321686681941, guid: 757e53eb5d8551644930f3e0a7fa89f9, type: 3}
@@ -440,7 +440,9 @@ MonoBehaviour:
   - {fileID: 6013179321686681941, guid: f120cc4b11a8c614db84aaa66d564bac, type: 3}
   enemyMelee: []
   enemyBow: []
-  enemyMusket: []
+  enemyMusket:
+  - {fileID: 7344666427671419300, guid: e76b05d539d1295469db19eab300f8af, type: 3}
+  - {fileID: 7344666427671419300, guid: 93940916b6f8e744599b59c8fa208c8a, type: 3}
   spawner: {fileID: 243097888121723107}
   hitParticle: {fileID: 102696, guid: 185035e4680c4b344b62bf5ace4674b8, type: 3}
   houseAnim: {fileID: 87316122}

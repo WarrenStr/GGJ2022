@@ -26,6 +26,7 @@ public class EnemyAI : MonoBehaviour
     public float timeBetweenAttacks;
     bool alreadyAttacked;
     public GameObject enemyProjectile;
+    public GameObject MuzzleFlash;
     public Transform shootPos;
 
 
@@ -49,10 +50,10 @@ public class EnemyAI : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if (Input.GetKeyDown(KeyCode.Space))
-        {
-            isScared = true;
-        }
+        //if (Input.GetKeyDown(KeyCode.Space))
+        //{
+        //    isScared = true;
+        //}
         playerInSightRange = Physics.CheckSphere(transform.position, sightRange, whatIsPlayer);
         playerInAttackRange = Physics.CheckSphere(transform.position, attackRange, whatIsPlayer);
 
@@ -112,21 +113,28 @@ public class EnemyAI : MonoBehaviour
         {
             // put attack animation here
             enemyAnim.SetBool("isShooting", true);
-            Rigidbody rb = Instantiate(enemyProjectile, shootPos.position, Quaternion.identity).GetComponent<Rigidbody>();
-            rb.AddForce(transform.forward * 32f, ForceMode.Impulse);
-            rb.AddForce(transform.up * 8f, ForceMode.Impulse);
-            StartCoroutine(WaitToChase());
-            alreadyAttacked = true;
-            Invoke(nameof(ResetAttack), timeBetweenAttacks);
-            Destroy(rb.gameObject, 3);
+
         }
+    }
+
+    public void ShootGun()
+    {
+        MuzzleFlash.SetActive(true);
+        Rigidbody rb = Instantiate(enemyProjectile, shootPos.position, Quaternion.identity).GetComponent<Rigidbody>();
+        rb.AddForce(transform.forward * 32f, ForceMode.Impulse);
+        rb.AddForce(transform.up * 8f, ForceMode.Impulse);
+        StartCoroutine(WaitToChase());
+        alreadyAttacked = true;
+        Invoke(nameof(ResetAttack), timeBetweenAttacks);
+        Destroy(rb.gameObject, 3);
     }
 
     IEnumerator WaitToChase()
     {
         waitingToChase = true;
 
-        yield return new WaitForSeconds(4);
+        yield return new WaitForSeconds(3);
+        MuzzleFlash.SetActive(false);
         ChasePlayer();
     }
 

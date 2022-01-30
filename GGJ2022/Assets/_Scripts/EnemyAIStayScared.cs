@@ -69,6 +69,8 @@ public class EnemyAIStayScared : MonoBehaviour
         {
             enemyAnim.enabled = false;
             gameObject.GetComponent<EnemyAIStayScared>().enabled = false;
+            gameObject.GetComponent<Collider>().enabled = false;
+            gameObject.GetComponent<NavMeshAgent>().enabled = false;
             //Invoke(nameof(DestroyEnemy), .5f);
         }
     }

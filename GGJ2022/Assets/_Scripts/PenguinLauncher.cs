@@ -17,9 +17,9 @@ public class PenguinLauncher : MonoBehaviour
     {
         Invoke("HitChest", 1.0f);
 
-        gorillaAnim.SetBool("isChestHit", true);
+        //gorillaAnim.SetBool("isChestHit", true);
 
-        Invoke("CancelChestHit", 3.0f);
+        //Invoke("CancelChestHit", 3.0f);
         
     }
 
@@ -47,6 +47,6 @@ public class PenguinLauncher : MonoBehaviour
     
     void CancelChestHit()
     {
-        gorillaAnim.SetBool("isChestHit", false);
+        //gorillaAnim.SetBool("isChestHit", false);
     }
 }
