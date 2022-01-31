@@ -6,6 +6,7 @@ using UnityEngine.SceneManagement;
 public class LevelManager : MonoBehaviour
 {
     public Animator MenuAnim;
+    public GameObject menu;
     public void startAnim()
     {
         MenuAnim.SetBool("StartAnim", true);
@@ -14,7 +15,9 @@ public class LevelManager : MonoBehaviour
 
     private IEnumerator switchScene()
     {
-        yield return new WaitForSeconds(2.1f);
+        yield return new WaitForSeconds(1f);
+        menu.SetActive(false);
+        yield return new WaitForSeconds(1f);
         SceneManager.LoadScene(1);
     }
 
@@ -26,6 +29,5 @@ public class LevelManager : MonoBehaviour
     public void QuitGame()
     {
         Application.Quit();
-        UnityEditor.EditorApplication.isPlaying = false;
     }
 }

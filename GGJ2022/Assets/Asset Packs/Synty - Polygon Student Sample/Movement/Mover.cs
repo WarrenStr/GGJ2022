@@ -9,6 +9,8 @@ public class Mover : MonoBehaviour
     NavMeshAgent playerNavAgent;
     private Animator animator;
 
+    public GameManager GM;
+
     [SerializeField] GameObject mainMusic;
     [SerializeField] GameObject deathMusic;
 
@@ -123,7 +125,7 @@ public class Mover : MonoBehaviour
     
     void Attacking()
     {
-        if (Input.GetKeyDown(KeyCode.E) && !attack)
+        if (Input.GetKeyDown(KeyCode.Space) && !attack)
         {
             //if(transform.position == playerNavAgent.destination)
 
@@ -172,6 +174,7 @@ public class Mover : MonoBehaviour
 
         if(playerHealth <= 0)
         {
+            GM.loose();
             playerDead = true;
             playerNavAgent.destination = transform.position;
             animator.SetBool("isDead", true);

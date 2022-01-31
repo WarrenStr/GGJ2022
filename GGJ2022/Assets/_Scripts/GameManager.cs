@@ -10,12 +10,19 @@ public class GameManager : MonoBehaviour
     public int numOfBuildingsToWin;
 
     public Image winPanel;
+    public Image loosePanel;
     public GameObject winMenu;
+    public GameObject looseMenu;
     private Color temp;
+
+    public GameObject pauseMenu, playMenu, menu3D;
 
     public void Pause()
     {
         Time.timeScale = 0;
+        pauseMenu.SetActive(true);
+        playMenu.SetActive(false);
+        menu3D.SetActive(false);
     }
 
     public void Unpause()
@@ -26,7 +33,11 @@ public class GameManager : MonoBehaviour
     public void QuitGame()
     {
         Application.Quit();
-        UnityEditor.EditorApplication.isPlaying = false;
+    }
+
+    public void PlayAgain()
+    {
+        SceneManager.LoadScene(1);
     }
 
     public void SwitchToScene(string nameOfScene)
@@ -40,7 +51,10 @@ public class GameManager : MonoBehaviour
 
     private void Update()
     {
-
+        if (Input.GetKeyDown(KeyCode.Escape))
+        {
+            Pause();
+        }
     }
     public void DestroyedABuilding()
     {
@@ -61,5 +75,20 @@ public class GameManager : MonoBehaviour
             winPanel.color = temp;
         }
         winMenu.SetActive(true);
+    }
+
+    public void loose()
+    {
+        StartCoroutine(LooseLevel());
+    }
+    public IEnumerator LooseLevel()
+    {
+        while (temp.a < .5)
+        {
+            yield return new WaitForSeconds(.1f);
+            temp.a = temp.a + 0.01f;
+            winPanel.color = temp;
+        }
+        looseMenu.SetActive(true);
     }
 }

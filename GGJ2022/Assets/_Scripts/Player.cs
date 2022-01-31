@@ -6,6 +6,8 @@ public class Player : MonoBehaviour
 {
     private Animator animator;
 
+
+
     public int maxHealth = 100;
     public int currentHealth;
 
@@ -41,7 +43,7 @@ public class Player : MonoBehaviour
         
         
 
-        if (Input.GetKeyDown(KeyCode.Z) && (currentPenguin > 0))
+        if (Input.GetKeyDown(KeyCode.Mouse1) && (currentPenguin > 0))
         {
             currentPenguin -= 1;
             penguinLauncher.LaunchProjectile();
@@ -78,7 +80,6 @@ public class Player : MonoBehaviour
     {
         if (collision.gameObject.tag == "Missile")
         {
-            print("HIT");
             TakeDamage(1);
         }
 
