@@ -166,12 +166,17 @@ public class EnemyAI : MonoBehaviour
 
     private void OnTriggerEnter(Collider other)
     {
-        if (other.tag == "Gorilla")
+        if (other.tag == "Gdmg1")
         {
-            Debug.Log("Player Hit");
+            //Debug.Log("Player Hit");
+            TakeDamage(1);
+        }
+        if (other.tag == "Gdmg2")
+        {
+            //Debug.Log("Player Hit");
             TakeDamage(3);
         }
-        if(other.tag == "Missile")
+        if (other.tag == "Missile")
         {
             TakeDamage(1);
         }

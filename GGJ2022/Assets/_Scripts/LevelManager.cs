@@ -7,18 +7,18 @@ public class LevelManager : MonoBehaviour
 {
     public Animator MenuAnim;
     public GameObject menu;
-    public void startAnim()
+    public void startAnim(int scene)
     {
         MenuAnim.SetBool("StartAnim", true);
-        StartCoroutine(switchScene());
+        StartCoroutine(switchScene(scene));
     }
 
-    private IEnumerator switchScene()
+    private IEnumerator switchScene(int scene)
     {
         yield return new WaitForSeconds(1f);
         menu.SetActive(false);
         yield return new WaitForSeconds(1f);
-        SceneManager.LoadScene(1);
+        SceneManager.LoadScene(scene);
     }
 
     public void SwitchToScene(string nameOfScene)

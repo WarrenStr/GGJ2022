@@ -528,9 +528,10 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 4306562787438238}
+  - component: {fileID: 1741605398}
   m_Layer: 8
   m_Name: RotateHelper
-  m_TagString: Untagged
+  m_TagString: Gdmg1
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -550,6 +551,20 @@ Transform:
   m_Father: {fileID: 4881015361083092}
   m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!136 &1741605398
+CapsuleCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1124073220559068}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  m_Radius: 1.28
+  m_Height: 3.15
+  m_Direction: 2
+  m_Center: {x: 0, y: 0.92, z: 0}
 --- !u!1 &1156773568120488
 GameObject:
   m_ObjectHideFlags: 0
@@ -1359,9 +1374,10 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 4760514302371670}
+  - component: {fileID: 1688059718}
   m_Layer: 8
   m_Name: Cup_R
-  m_TagString: Untagged
+  m_TagString: Gdmg2
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -1382,6 +1398,19 @@ Transform:
   m_Father: {fileID: 4493448948593036}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!135 &1688059718
+SphereCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1505180740534170}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Radius: 0.35
+  m_Center: {x: -0.19, y: 0, z: 0}
 --- !u!1 &1521961780104668
 GameObject:
   m_ObjectHideFlags: 0
@@ -2018,7 +2047,7 @@ SphereCollider:
   m_IsTrigger: 0
   m_Enabled: 1
   serializedVersion: 2
-  m_Radius: 0.29
+  m_Radius: 0.35
   m_Center: {x: -0.19, y: 0, z: 0}
 --- !u!1 &1730097654122834
 GameObject:
@@ -2262,6 +2291,7 @@ GameObject:
   - component: {fileID: 2019681379}
   - component: {fileID: 226917656}
   - component: {fileID: 226917657}
+  - component: {fileID: 1614211467}
   m_Layer: 8
   m_Name: Gorilla Brown
   m_TagString: Player
@@ -2448,7 +2478,7 @@ CapsuleCollider:
   m_Material: {fileID: 0}
   m_IsTrigger: 0
   m_Enabled: 1
-  m_Radius: 1.16
+  m_Radius: 1.28
   m_Height: 3.15
   m_Direction: 2
   m_Center: {x: 0, y: 0.92, z: 0}
@@ -2564,6 +2594,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   cam: {fileID: 0}
+  GM: {fileID: 0}
   mainMusic: {fileID: 4399969919961368392}
   deathMusic: {fileID: 6844031423440158698}
   runSpeed: 10
@@ -2573,6 +2604,8 @@ MonoBehaviour:
   runMeterRegenTime: 7
   attack: 0
   wristCollide: {fileID: 1981447827}
+  wristCollideEnemyDmg: {fileID: 1688059718}
+  runeCollide: {fileID: 1741605398}
 --- !u!114 &226917656
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2612,6 +2645,20 @@ MonoBehaviour:
   projectilePrefab: {fileID: 3489120892114460638, guid: 6817fd3c5809228498530e5ebe58f46a, type: 3}
   launchForce: 10
   gorillaAnim: {fileID: 0}
+--- !u!136 &1614211467
+CapsuleCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1791417161093438}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  m_Radius: 0.8
+  m_Height: 2.17
+  m_Direction: 0
+  m_Center: {x: 0, y: 2.16, z: 0.77}
 --- !u!1 &1796313935255756
 GameObject:
   m_ObjectHideFlags: 0
@@ -3211,13 +3258,13 @@ GameObject:
   m_CorrespondingSourceObject: {fileID: 4226593038937030516, guid: d0edfe08d1696dc42a28aea0a272ca4c, type: 3}
   m_PrefabInstance: {fileID: 7232004369300324510}
   m_PrefabAsset: {fileID: 0}
---- !u!1 &4399969919961368392 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 6436462989507528662, guid: d0edfe08d1696dc42a28aea0a272ca4c, type: 3}
-  m_PrefabInstance: {fileID: 7232004369300324510}
-  m_PrefabAsset: {fileID: 0}
 --- !u!4 &8169287091032647632 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 1513806491073079118, guid: d0edfe08d1696dc42a28aea0a272ca4c, type: 3}
+  m_PrefabInstance: {fileID: 7232004369300324510}
+  m_PrefabAsset: {fileID: 0}
+--- !u!1 &4399969919961368392 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 6436462989507528662, guid: d0edfe08d1696dc42a28aea0a272ca4c, type: 3}
   m_PrefabInstance: {fileID: 7232004369300324510}
   m_PrefabAsset: {fileID: 0}

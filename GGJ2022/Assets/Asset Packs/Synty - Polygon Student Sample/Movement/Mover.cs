@@ -26,6 +26,8 @@ public class Mover : MonoBehaviour
 
     public bool attack;
     public SphereCollider wristCollide;
+    public SphereCollider wristCollideEnemyDmg;
+    public CapsuleCollider runeCollide;
 
     bool isPlayerDead;
 
@@ -96,11 +98,13 @@ public class Mover : MonoBehaviour
         if (Input.GetKey(KeyCode.LeftShift))
         {
             isRunning = true;
+            runeCollide.isTrigger = true;
             playerNavAgent.speed = runSpeed;
         }
         else
         {
             isRunning = false;
+            runeCollide.isTrigger = false;
             playerNavAgent.speed = walkSpeed;
         }
 
@@ -160,10 +164,12 @@ public class Mover : MonoBehaviour
         attack = true;
         yield return new WaitForSeconds(0.4f);
         wristCollide.isTrigger = true;
+        wristCollideEnemyDmg.isTrigger = true;
         yield return new WaitForSeconds(1.0f);
         attack = false;
         animator.ResetTrigger("isSwinging");
         wristCollide.isTrigger = false;
+        wristCollideEnemyDmg.isTrigger = false;
     }
 
 

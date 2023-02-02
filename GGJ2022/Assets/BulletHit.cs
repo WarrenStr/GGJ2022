@@ -11,7 +11,7 @@ public class BulletHit : MonoBehaviour
 
         if (collision.gameObject.tag == "Player")
         {
-            print("hit");
+
             sphere.enabled = false;
             Instantiate(blood, gameObject.transform.position, Quaternion.identity);
         }

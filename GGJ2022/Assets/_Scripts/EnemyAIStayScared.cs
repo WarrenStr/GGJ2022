@@ -12,6 +12,9 @@ public class EnemyAIStayScared : MonoBehaviour
     private float speed = 1;
     public float speedMultipler = 2;
 
+     int xPos1, xPos2;
+    int zPos1, zPos2;
+
     public GameObject emptty;
 
     //scared var
@@ -25,11 +28,19 @@ public class EnemyAIStayScared : MonoBehaviour
     {
         agent = GetComponent<NavMeshAgent>();
         enemyAnim = GetComponent<Animator>();
+        GameManager gm = GameObject.FindGameObjectWithTag("GameManager").GetComponent<GameManager>();
+        xPos1 = gm.xPos1;
+        xPos2 = gm.xPos2;
+        zPos1 = gm.zPos1;
+        zPos2 = gm.zPos2;
+        print($"{xPos1} {xPos1} {xPos2} {zPos1} {zPos2}");
     }
 
     void Update()
     {
         Scared();
+
+        //print(randomSpot.x + " " +randomSpot.z);
     }
 
 
@@ -38,15 +49,15 @@ public class EnemyAIStayScared : MonoBehaviour
         if (!startScared)
         {
             startScared = true;
-            randomSpot.x = Random.Range(-7, 67);
-            randomSpot.z = Random.Range(-35, 11);
+            randomSpot.x = Random.Range(xPos1, xPos2);
+            randomSpot.z = Random.Range(zPos1, zPos2);
             StartCoroutine(NewPosScared());
         }
         if (agent.transform.position.x == randomSpot.x && agent.transform.position.z == randomSpot.z)
         {
-            print("Hi");
-            randomSpot.x = Random.Range(-7, 67);
-            randomSpot.z = Random.Range(-35, 11);
+
+            randomSpot.x = Random.Range(xPos1, xPos2);
+            randomSpot.z = Random.Range(zPos1, zPos2);
         }
 
         agent.speed = speed * speedMultipler;
@@ -56,8 +67,8 @@ public class EnemyAIStayScared : MonoBehaviour
     {
         yield return new WaitForSeconds(newPosTimer);
 
-        randomSpot.x = Random.Range(-7, 67);
-        randomSpot.z = Random.Range(-35, 11);
+        randomSpot.x = Random.Range(xPos1, xPos2);
+        randomSpot.z = Random.Range(zPos1, zPos2);
 
         StartCoroutine(NewPosScared());
     }
@@ -76,10 +87,19 @@ public class EnemyAIStayScared : MonoBehaviour
     }
     private void OnTriggerEnter(Collider other)
     {
-        if (other.tag == "Gorilla")
+        if (other.tag == "Gdmg1")
         {
-            Debug.Log("Player Hit");
+            //Debug.Log("Player Hit RUN");
+            TakeDamage(1);
+        }
+        if (other.tag == "Gdmg2")
+        {
+            //Debug.Log("Player Hit WRIST");
             TakeDamage(3);
+        }
+        if (other.tag == "Missile")
+        {
+            TakeDamage(1);
         }
     }
 }

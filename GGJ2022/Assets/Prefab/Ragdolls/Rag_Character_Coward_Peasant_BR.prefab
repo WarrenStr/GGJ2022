@@ -4216,7 +4216,7 @@ MonoBehaviour:
   speedMultipler: 5
   emptty: {fileID: 0}
   randomRange: 20
-  newPosTimer: 5
+  newPosTimer: 3
   isScared: 0
 --- !u!1 &6013179321686681995
 GameObject:

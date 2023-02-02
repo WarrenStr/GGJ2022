@@ -9,12 +9,19 @@ public class GameManager : MonoBehaviour
     public int destroyedBuildings;
     public int numOfBuildingsToWin;
 
+    public GameObject playPanel;
     public Image winPanel;
     public Image loosePanel;
     public GameObject winMenu;
     public GameObject looseMenu;
+    public Player player;
+
     private Color temp;
 
+    public int xPos1, xPos2;
+    public int zPos1, zPos2;
+
+    private bool finishedLevel;
     public GameObject pauseMenu, playMenu, menu3D;
 
     public void Pause()
@@ -35,9 +42,29 @@ public class GameManager : MonoBehaviour
         Application.Quit();
     }
 
-    public void PlayAgain()
+    public void Scene0()
+    {
+        SceneManager.LoadScene(0);
+    }
+
+    public void Scene1()
     {
         SceneManager.LoadScene(1);
+    }
+
+    public void Scene2()
+    {
+        SceneManager.LoadScene(2);
+    }
+
+    public void Scene3()
+    {
+        SceneManager.LoadScene(3);
+    }
+
+    public void Scene4()
+    {
+        SceneManager.LoadScene(4);
     }
 
     public void SwitchToScene(string nameOfScene)
@@ -51,7 +78,7 @@ public class GameManager : MonoBehaviour
 
     private void Update()
     {
-        if (Input.GetKeyDown(KeyCode.Escape))
+        if (Input.GetKeyDown(KeyCode.Escape) && !finishedLevel)
         {
             Pause();
         }
@@ -59,8 +86,8 @@ public class GameManager : MonoBehaviour
     public void DestroyedABuilding()
     {
         destroyedBuildings++;
-
-        if(destroyedBuildings >= numOfBuildingsToWin)
+        playPanel.SetActive(false);
+        if (destroyedBuildings >= numOfBuildingsToWin)
         {
             StartCoroutine(WinLevel());
         }
@@ -68,7 +95,10 @@ public class GameManager : MonoBehaviour
 
     public IEnumerator WinLevel()
     {
-        while(temp.a < .5)
+        playPanel.SetActive(false);
+        finishedLevel = true;
+        player.currentHealth = 100000000;
+        while (temp.a < .5)
         {
             yield return new WaitForSeconds(.1f);
             temp.a = temp.a + 0.01f;
@@ -79,7 +109,12 @@ public class GameManager : MonoBehaviour
 
     public void loose()
     {
-        StartCoroutine(LooseLevel());
+        if (!finishedLevel)
+        {
+            finishedLevel = true;
+            StartCoroutine(LooseLevel());
+        }
+        
     }
     public IEnumerator LooseLevel()
     {
