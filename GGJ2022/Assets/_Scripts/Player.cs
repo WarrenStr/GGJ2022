@@ -6,19 +6,22 @@ public class Player : MonoBehaviour
 {
     private Animator animator;
 
+
+
     public int maxHealth = 100;
     public int currentHealth;
 
     public int maxPenguin = 3;
     public int currentPenguin;
 
-    public float maxRechargeTimer = 1.0f;
+    public float maxRechargeTimer = 3.0f;
     public float rechargeTimer;
 
     public HealthBar healthBar;
     public PenguinCount penguinCounter;
     public PenguinCount penguinRecharge;
     public PenguinLauncher penguinLauncher;
+    public BananaSpawner subtractBanana;
     
     // Start is called before the first frame update
     void Start()
@@ -40,7 +43,7 @@ public class Player : MonoBehaviour
         
         
 
-        if (Input.GetKeyDown(KeyCode.Z) && (currentPenguin > 0))
+        if (Input.GetKeyDown(KeyCode.Mouse1) && (currentPenguin > 0))
         {
             currentPenguin -= 1;
             penguinLauncher.LaunchProjectile();
@@ -66,16 +69,26 @@ public class Player : MonoBehaviour
         healthBar.SetHealth(currentHealth);
     }
 
+    void RestoreHealth(int heal)
+    {
+        currentHealth += heal;
+
+        healthBar.SetHealth(currentHealth);
+    }
+
     private void OnCollisionEnter(Collision collision)
     {
-        foreach(ContactPoint contact in collision.contacts)
+        if (collision.gameObject.tag == "Missile")
         {
-            if (collision.relativeVelocity.magnitude > 2)
-            {
-                TakeDamage(5);
-            }
-                
+            TakeDamage(1);
         }
+
+        if (collision.gameObject.tag == "Nanner")
+        {
+            RestoreHealth(10);
+            subtractBanana.SubtractBanana(1);
+        }
+        
     }
 
 }

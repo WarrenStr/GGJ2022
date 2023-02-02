@@ -38,12 +38,16 @@ public class BuildingHealth : MonoBehaviour
 
     private int ranNum;
     private bool stopNatureSpawn;
-    [SerializeField] GameObject hitParticle;
+    private bool hitByPenguin;
+    private GameManager GM;
+    [SerializeField] GameObject hitParticle; 
+    [SerializeField] Animator houseAnim;
 
 
-    private void Update()
+    private void Start()
     {
-
+        GM = GameObject.FindGameObjectWithTag("GameManager").GetComponent<GameManager>();
+        spawner.SpawnEnemyTimed(enemyMusket[Random.Range(0, enemyMusket.Count)]);
     }
 
     private void OnTriggerEnter(Collider other)
@@ -53,19 +57,40 @@ public class BuildingHealth : MonoBehaviour
             BuildingHit();
             Instantiate(hitParticle, other.transform.position, Quaternion.identity);
         }
+        if (other.tag == "Penguin")
+        {
+            if (!hitByPenguin)
+            {
+                hitByPenguin = true;
+                BuildingHit();
+                Instantiate(hitParticle, other.transform.position, Quaternion.identity);
+            }
+        }
     }
 
     public void BuildingHit()
     {
+        StartCoroutine(DamageBuilding());
+
+        spawner.ResetList();
         chooseEnemy(enemyCoward, spawnCoward, numberOfCoward);
         chooseEnemy(enemyMelee, spawnMelee, numberOfMelee );
         chooseEnemy(enemyBow, spawnBow, numberOfBow);
         chooseEnemy(enemyMusket, spawnMusket, numberOfMusket);
+
         numOfHitsToDestroy--;
         if(numOfHitsToDestroy < 1) //switches building with rubble when hits is 0
         {
             StartCoroutine(RubbleSpawn());
+            GM.DestroyedABuilding();
         }
+    }
+
+    public IEnumerator DamageBuilding()
+    {
+        houseAnim.SetBool("damaged", true);
+        yield return new WaitForSeconds(0.1f);
+        houseAnim.SetBool("damaged", false);
     }
     public IEnumerator RubbleSpawn() //turns off building, and turns on rubble. after set time trees will appear
     {

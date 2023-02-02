@@ -1286,7 +1286,7 @@ GameObject:
   - component: {fileID: 2754676862769881288}
   m_Layer: 9
   m_Name: Penguin
-  m_TagString: Gorilla
+  m_TagString: Penguin
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0

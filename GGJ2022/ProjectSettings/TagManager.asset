@@ -8,7 +8,9 @@ TagManager:
   - Gorilla
   - Building
   - Enemy
-  - BuildManager
+  - GameManager
+  - Nanner
+  - Penguin
   layers:
   - Default
   - TransparentFX

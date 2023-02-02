@@ -2744,6 +2744,7 @@ GameObject:
   m_Component:
   - component: {fileID: 474602}
   - component: {fileID: 9508082}
+  - component: {fileID: 258463561935084917}
   m_Layer: 0
   m_Name: Character_Soldier_02_Blue
   m_TagString: Untagged
@@ -2790,6 +2791,77 @@ Animator:
   m_HasTransformHierarchy: 1
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorControllerStateOnDisable: 0
+--- !u!114 &258463561935084917
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 189836}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b2d8418b0b9634b1892b0268dd9c2743, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  boneShape: 1
+  drawBones: 1
+  drawTripods: 0
+  boneSize: 1
+  tripodSize: 1
+  boneColor: {r: 0, g: 0, b: 1, a: 0.5}
+  m_Transforms:
+  - {fileID: 409748}
+  - {fileID: 410206}
+  - {fileID: 476302}
+  - {fileID: 407874}
+  - {fileID: 459984}
+  - {fileID: 454552}
+  - {fileID: 435964}
+  - {fileID: 441352}
+  - {fileID: 484450}
+  - {fileID: 459318}
+  - {fileID: 499062}
+  - {fileID: 402278}
+  - {fileID: 424636}
+  - {fileID: 474952}
+  - {fileID: 472628}
+  - {fileID: 407616}
+  - {fileID: 495550}
+  - {fileID: 400990}
+  - {fileID: 493188}
+  - {fileID: 483044}
+  - {fileID: 429036}
+  - {fileID: 436356}
+  - {fileID: 428818}
+  - {fileID: 456722}
+  - {fileID: 442382}
+  - {fileID: 445000}
+  - {fileID: 446786}
+  - {fileID: 409184}
+  - {fileID: 478126}
+  - {fileID: 449114}
+  - {fileID: 462862}
+  - {fileID: 499692}
+  - {fileID: 442686}
+  - {fileID: 465342}
+  - {fileID: 449628}
+  - {fileID: 435278}
+  - {fileID: 459292}
+  - {fileID: 464748}
+  - {fileID: 408028}
+  - {fileID: 476512}
+  - {fileID: 411470}
+  - {fileID: 463272}
+  - {fileID: 449102}
+  - {fileID: 452158}
+  - {fileID: 446480}
+  - {fileID: 435772}
+  - {fileID: 460318}
+  - {fileID: 403994}
+  - {fileID: 448608}
+  - {fileID: 422850}
+  - {fileID: 458682}
+  - {fileID: 476670}
 --- !u!1 &190834
 GameObject:
   m_ObjectHideFlags: 0

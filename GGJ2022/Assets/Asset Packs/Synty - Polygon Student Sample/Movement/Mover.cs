@@ -9,6 +9,11 @@ public class Mover : MonoBehaviour
     NavMeshAgent playerNavAgent;
     private Animator animator;
 
+    public GameManager GM;
+
+    [SerializeField] GameObject mainMusic;
+    [SerializeField] GameObject deathMusic;
+
     [SerializeField]
     private float runSpeed = 10.0f;
     [SerializeField]
@@ -21,6 +26,8 @@ public class Mover : MonoBehaviour
 
     public bool attack;
     public SphereCollider wristCollide;
+    public SphereCollider wristCollideEnemyDmg;
+    public CapsuleCollider runeCollide;
 
     bool isPlayerDead;
 
@@ -39,7 +46,7 @@ public class Mover : MonoBehaviour
         KillPlayer(isPlayerDead);
 
         Attacking();
-        if (Input.GetMouseButtonDown(0) || Input.GetMouseButton(0))
+        if (Input.GetMouseButtonDown(0) || Input.GetMouseButton(0) && !attack)
         {
             MoveToCursor();
         }
@@ -91,11 +98,13 @@ public class Mover : MonoBehaviour
         if (Input.GetKey(KeyCode.LeftShift))
         {
             isRunning = true;
+            runeCollide.isTrigger = true;
             playerNavAgent.speed = runSpeed;
         }
         else
         {
             isRunning = false;
+            runeCollide.isTrigger = false;
             playerNavAgent.speed = walkSpeed;
         }
 
@@ -120,15 +129,15 @@ public class Mover : MonoBehaviour
     
     void Attacking()
     {
-        if (Input.GetKeyDown(KeyCode.E) && !attack)
+        if (Input.GetKeyDown(KeyCode.Space) && !attack)
         {
-            if(transform.position == playerNavAgent.destination)
-            {
-                StartCoroutine(AttackTimer());
-
-            }
+            //if(transform.position == playerNavAgent.destination)
 
 
+
+            animator.SetTrigger("isSwinging");
+
+            StartCoroutine(AttackTimer());
             playerNavAgent.destination = transform.position;
             animator.SetBool("isAttacking", true);
         }
@@ -153,10 +162,14 @@ public class Mover : MonoBehaviour
     IEnumerator AttackTimer()
     {
         attack = true;
+        yield return new WaitForSeconds(0.4f);
         wristCollide.isTrigger = true;
+        wristCollideEnemyDmg.isTrigger = true;
         yield return new WaitForSeconds(1.0f);
         attack = false;
+        animator.ResetTrigger("isSwinging");
         wristCollide.isTrigger = false;
+        wristCollideEnemyDmg.isTrigger = false;
     }
 
 
@@ -167,9 +180,12 @@ public class Mover : MonoBehaviour
 
         if(playerHealth <= 0)
         {
+            GM.loose();
             playerDead = true;
             playerNavAgent.destination = transform.position;
             animator.SetBool("isDead", true);
+            mainMusic.SetActive(false);
+            deathMusic.SetActive(true);
 
             return;
         }
